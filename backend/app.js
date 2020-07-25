@@ -1,17 +1,23 @@
-const path = require("path");
+const path = require("path")
 
-const express = require("express");
+const express = require("express")
+const bodyParser = require('body-parser')
 
-const storeRoutes = require("./routes/store");
-const adminRoutes = require("./routes/admin");
+const storeRoutes = require("./routes/store")
+const adminData = require("./routes/admin")
 
 const app = express();
 
-app.use(adminRoutes);
-app.use(storeRoutes);
+app.set('view engine', 'pug')
 
-app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, "views", "404.html"));
-});
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.listen(3000);
+app.use('/admin', adminData.routes)
+app.use(storeRoutes)
+
+app.use((req, res, next) => {
+  res.status(404).sendFile(path.join(__dirname, "views", "404.html"))
+})
+
+app.listen(3000)
