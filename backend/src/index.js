@@ -3,8 +3,8 @@ const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 
-const storeRoutes = require("./routes/store");
-const adminData = require("./routes/admin");
+import { adminRoutes } from "./routes/admin";
+import { storeRoutes } from "./routes/store";
 
 const app = express();
 
@@ -14,7 +14,7 @@ app.set("views", "src/views");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/admin", adminData.routes);
+app.use("/admin", adminRoutes);
 app.use(storeRoutes);
 
 app.use((req, res, next) => {

@@ -1,9 +1,9 @@
 const express = require("express");
 
-const router = express.Router();
+import * as storeController from "../controllers/store";
 
-const storeController = require("../controllers/store");
+const router = express.Router();
 
 router.get("/", storeController.getProducts);
 
-module.exports = router;
+export { router as storeRoutes };
