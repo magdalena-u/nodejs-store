@@ -9,6 +9,7 @@ const adminData = require("./routes/admin");
 const app = express();
 
 app.set("view engine", "pug");
+app.set("views", "src/views");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
