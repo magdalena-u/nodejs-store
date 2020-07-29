@@ -1,12 +1,12 @@
 const path = require("path");
 
-export const products = [];
+import { addProduct } from "../models/product";
 
 export const getAddProduct = (req, res, next) => {
   res.sendFile(path.join(__dirname, "../", "views", "add-product.html"));
 };
 
 export const postAddProduct = (req, res, next) => {
-  products.push({ title: req.body.title });
+  addProduct({ title: req.body.title });
   res.redirect("/");
 };
