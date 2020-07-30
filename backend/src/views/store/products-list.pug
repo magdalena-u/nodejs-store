@@ -3,9 +3,10 @@ include ../shared/head.pug
 body
     include ../shared/navigation.pug
     main
-        ul
-            each product in products
-                li #{product.title}
+        if products.length > 0
+            ul
+                each product in products
+                    li #{product.title}
 
 
         
