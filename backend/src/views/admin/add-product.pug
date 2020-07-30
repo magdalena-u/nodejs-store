@@ -1,0 +1,9 @@
+include ../shared/head.pug
+body
+    include ../shared/navigation.pug
+    main
+       form(action="/admin/add-product", method="POST") 
+            div
+                label(for="title") Title
+                input(type="text", name="title", id="title")
+            button(type="submit") Add Product
