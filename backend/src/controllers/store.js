@@ -1,4 +1,4 @@
-import { fetchAllProducts } from "../models/product";
+import { fetchAllProducts, findProductById } from "../models/product";
 
 export const getProductsList = (req, res, next) => {
   fetchAllProducts((products) => {
@@ -7,7 +7,8 @@ export const getProductsList = (req, res, next) => {
 };
 
 export const getProductDetail = (req, res, next) => {
-  res.render("store/product-detail");
+  const productId= req.params.id
+  findProductById(productId, (product)=> res.render("store/product-detail", {product: product}))
 };
 
 export const getStore = (req, res, next) => {

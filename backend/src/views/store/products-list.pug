@@ -4,9 +4,9 @@ body
     include ../shared/navigation.pug
     main
         if products.length > 0
-            ul
                 each product in products
-                    li #{product.title}
-
-
-        
+                    div
+                        h3 #{product.title}
+                        a(href="/products-list/" + product.id) Details
+                        p #{product.price}
+                     

@@ -1,13 +1,14 @@
 const path = require("path");
 
 import { addProduct } from "../models/product";
+import {fetchAllProducts} from '../models/product'
 
 export const getAddProduct = (req, res, next) => {
   res.render("admin/add-product");
 };
 
 export const postAddProduct = (req, res, next) => {
-  addProduct({ title: req.body.title });
+  addProduct(req.body);
   res.redirect("/");
 };
 
@@ -16,5 +17,7 @@ export const getEditProduct = (req, res, next) => {
 };
 
 export const getProductsList = (req, res, next) => {
-  res.render("admin/products-list");
+  fetchAllProducts((products) => {
+    res.render("admin/products-list", { products: products });
+  })
 };

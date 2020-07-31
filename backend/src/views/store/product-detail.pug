@@ -2,4 +2,7 @@ include ../shared/head.pug
 body
     include ../shared/navigation.pug
     main
-     div PRODUCTS DETAIL
+     div 
+        h3 #{product.title}
+        p #{product.price}
+        span #{product.description}

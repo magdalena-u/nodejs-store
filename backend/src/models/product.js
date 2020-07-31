@@ -14,9 +14,18 @@ const getProductsFromFile = (callback) =>
     return callback(JSON.parse(fileContent));
   });
 
-export const addProduct = (title) =>
+export const findProductById = (id, callback) => {
   getProductsFromFile((products) => {
-    products.push(title);
+    const product = products.find((product) => product.id === id)
+    callback(product)
+  }
+  );
+};
+
+export const addProduct = (productDetail) =>
+  getProductsFromFile((products) => {
+    productDetail.id = Math.random().toString();
+    products.push(productDetail);
 
     fs.writeFile(pathToData, JSON.stringify(products), (err) =>
       console.log(err)
