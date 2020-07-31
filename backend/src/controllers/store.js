@@ -14,3 +14,7 @@ export const getProductDetail = (req, res, next) => {
 export const getStore = (req, res, next) => {
   res.render("store");
 };
+
+export const addProductToCart = (req, res, next) => {
+  res.render("store/cart")
+}

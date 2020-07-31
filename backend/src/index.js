@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/admin", adminRoutes);
-app.use("/store", storeRoutes);
+app.use(storeRoutes);
 
 app.use((req, res, next) => {
   res.status(404).render("shared/404.pug");

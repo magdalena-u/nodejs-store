@@ -1,12 +1,13 @@
-
 include ../shared/head.pug
 body
     include ../shared/navigation.pug
     main
         if products.length > 0
-                each product in products
-                    div
-                        h3 #{product.title}
-                        a(href="/products-list/" + product.id) Details
-                        p #{product.price}
-                     
+            each product in products
+                div
+                    h3 #{product.title}
+                    a(href="/products-list/" + product.id) Details
+                    p #{product.price}
+                    form(action="/cart", method="POST")
+                        input(type="hidden", value=product.id)
+                        button(type="submit") Add to cart             
