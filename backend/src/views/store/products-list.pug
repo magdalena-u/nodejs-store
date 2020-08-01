@@ -9,5 +9,5 @@ body
                     a(href="/products-list/" + product.id) Details
                     p #{product.price}
                     form(action="/cart", method="POST")
-                        input(type="hidden", value=product.id)
+                        input(type="hidden",name="id" value=product.id)
                         button(type="submit") Add to cart             

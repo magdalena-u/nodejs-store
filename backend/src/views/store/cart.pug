@@ -2,4 +2,9 @@ include ../shared/head.pug
 body
     include ../shared/navigation.pug
     main
-     div CART
+        if products.length > 0
+            each product in products
+                ul
+                    li #{product.title}
+                    li #{product.price}
+                    

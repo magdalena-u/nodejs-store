@@ -1,29 +1,21 @@
-const path = require("path");
-const fs = require("fs");
+import * as path from "path";
+import * as fs from "fs";
+
+import { getDataFromFile } from "../helpers/getDataFromFile";
 
 const pathToData = path.join(
   path.join(__dirname, "../", "data", "products.json")
 );
 
-const getProductsFromFile = (callback) =>
-  fs.readFile(pathToData, (err, fileContent) => {
-    if (err) {
-      return callback([]);
-    }
-
-    return callback(JSON.parse(fileContent));
-  });
-
 export const findProductById = (id, callback) => {
-  getProductsFromFile((products) => {
-    const product = products.find((product) => product.id === id)
-    callback(product)
-  }
-  );
+  getDataFromFile(pathToData, (products) => {
+    const product = products.find((product) => product.id === id);
+    callback(product);
+  });
 };
 
 export const addProduct = (productDetail) =>
-  getProductsFromFile((products) => {
+  getDataFromFile(pathToData, (products) => {
     productDetail.id = Math.random().toString();
     products.push(productDetail);
 
@@ -32,4 +24,5 @@ export const addProduct = (productDetail) =>
     );
   });
 
-export const fetchAllProducts = (callback) => getProductsFromFile(callback);
+export const fetchAllProducts = (callback) =>
+  getDataFromFile(pathToData, callback);
