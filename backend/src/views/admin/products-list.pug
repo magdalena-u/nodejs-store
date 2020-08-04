@@ -10,3 +10,6 @@ body
                         p #{product.description}
                         button 
                             a(href="/admin/edit-product/" + product.id) EDIT
+                        form(action="/admin/delete-product", method="post")
+                            input(type="hidden", name="id" value=product.id) 
+                            button(type="submit") DELETE

@@ -14,14 +14,19 @@ export const findProductById = (id, callback) => {
   });
 };
 
+const getCurrentProductIndex = (products, id) =>
+  products.findIndex((product) => product.id === id);
+
 export const addProduct = (productDetail) =>
   getDataFromFile(pathToData, (products) => {
     if (productDetail.id) {
-      const existingProductIndex = products.findIndex(
-        (product) => product.id === productDetail.id
+      const currentProductIndex = getCurrentProductIndex(
+        products,
+        productDetail.id
       );
+
       const updateProducts = [...products];
-      updateProducts[existingProductIndex] = productDetail;
+      updateProducts[currentProductIndex] = productDetail;
 
       fs.writeFile(pathToData, JSON.stringify(updateProducts), (err) =>
         console.log(err)
@@ -35,6 +40,18 @@ export const addProduct = (productDetail) =>
       );
     }
   });
+
+export const deleteProduct = (id) => {
+  getDataFromFile(pathToData, (products) => {
+    const curentProductIndex = getCurrentProductIndex(products, id);
+    const updateProducts = [...products];
+    updateProducts.splice(curentProductIndex, 1);
+
+    fs.writeFile(pathToData, JSON.stringify(updateProducts), (err) =>
+      console.log(err)
+    );
+  });
+};
 
 export const fetchAllProducts = (callback) =>
   getDataFromFile(pathToData, callback);

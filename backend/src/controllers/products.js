@@ -1,6 +1,6 @@
 const path = require("path");
 
-import { addProduct, findProductById } from "../models/product";
+import { addProduct, findProductById, deleteProduct } from "../models/product";
 import { fetchAllProducts } from "../models/product";
 
 export const getAddProduct = (req, res, next) => {
@@ -22,4 +22,9 @@ export const getProductsList = (req, res, next) => {
   fetchAllProducts((products) => {
     res.render("admin/products-list", { products: products });
   });
+};
+
+export const getUpdatedProductsList = (req, res, next) => {
+  deleteProduct(req.body.id);
+  res.redirect("/admin/products-list");
 };
