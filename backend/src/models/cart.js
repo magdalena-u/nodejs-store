@@ -27,5 +27,20 @@ export const addProduct = (id) => {
   });
 };
 
+export const deleteProduct = (id) => {
+  getDataFromFile(pathToData, (products) => {
+    const currentProductIndex = products.findIndex(
+      (product) => product.id === id
+    );
+
+    const updateProducts = [...products];
+    updateProducts.splice(currentProductIndex, 1);
+
+    fs.writeFile(pathToData, JSON.stringify(updateProducts), (err) =>
+      console.log(err)
+    );
+  });
+};
+
 export const fetchCartProducts = (callback) =>
   getDataFromFile(pathToData, callback);

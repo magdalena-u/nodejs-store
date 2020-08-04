@@ -1,5 +1,5 @@
 import { fetchAllProducts, findProductById } from "../models/product";
-import { addProduct, fetchCartProducts } from "../models/cart";
+import { addProduct, fetchCartProducts, deleteProduct } from "../models/cart";
 
 export const getProductsList = (req, res, next) => {
   fetchAllProducts((products) => {
@@ -20,6 +20,11 @@ export const getStore = (req, res, next) => {
 
 export const addProductToCart = (req, res, next) => {
   addProduct(req.body.id);
+  res.redirect("/cart");
+};
+
+export const deleteProductFromCart = (req, res, next) => {
+  deleteProduct(req.body.id);
   res.redirect("/cart");
 };
 

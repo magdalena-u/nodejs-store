@@ -7,4 +7,7 @@ body
                 ul
                     li #{product.title}
                     li #{product.price}
+                form(action="/cart-delete-product", method="POST")
+                    input(type="hidden" name="id" value=product.id)
+                    button(type="submit") DELETE              
                     
