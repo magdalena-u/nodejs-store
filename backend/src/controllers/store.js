@@ -1,17 +1,15 @@
 import { fetchAllProducts, findProductById } from "../models/product";
 import { addProduct, fetchCartProducts, deleteProduct } from "../models/cart";
 
-export const getProductsList = (req, res, next) => {
-  fetchAllProducts((products) => {
-    res.render("store/products-list", { products: products });
-  });
+export const getProductsList = async (req, res, next) => {
+  const products = await fetchAllProducts();
+  res.render("store/products-list", { products });
 };
 
-export const getProductDetail = (req, res, next) => {
+export const getProductDetail = async (req, res, next) => {
   const productId = req.params.id;
-  findProductById(productId, (product) =>
-    res.render("store/product-detail", { product: product })
-  );
+  const product = await findProductById(productId);
+  res.render("store/product-detail", { product });
 };
 
 export const getStore = (req, res, next) => {

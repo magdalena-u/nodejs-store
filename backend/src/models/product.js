@@ -1,57 +1,54 @@
-import * as path from "path";
-import * as fs from "fs";
+import mongoDB from "mongodb";
 
-import { getDataFromFile } from "../helpers/getDataFromFile";
+import { getDb } from "../database";
 
-const pathToData = path.join(
-  path.join(__dirname, "../", "data", "products.json")
-);
-
-export const findProductById = (id, callback) => {
-  getDataFromFile(pathToData, (products) => {
-    const product = products.find((product) => product.id === id);
-    callback(product);
-  });
+export const findProductById = (id) => {
+  const db = getDb();
+  return db
+    .collection("products")
+    .find({ _id: new mongoDB.ObjectId(id) })
+    .next()
+    .then((product) => product)
+    .catch((err) => console.log(err));
 };
 
-const getCurrentProductIndex = (products, id) =>
-  products.findIndex((product) => product.id === id);
+export const addProduct = (productDetails) => {
+  const db = getDb();
+  return db
+    .collection("products")
+    .insertOne(productDetails)
+    .then((result) => {})
+    .catch((err) => console.log(err));
+};
 
-export const addProduct = (productDetail) =>
-  getDataFromFile(pathToData, (products) => {
-    if (productDetail.id) {
-      const currentProductIndex = getCurrentProductIndex(
-        products,
-        productDetail.id
-      );
+export const updateProduct = (productDetails) => {
+  const { id, title, price, description } = productDetails;
 
-      const updateProducts = [...products];
-      updateProducts[currentProductIndex] = productDetail;
-
-      fs.writeFile(pathToData, JSON.stringify(updateProducts), (err) =>
-        console.log(err)
-      );
-    } else {
-      productDetail.id = Math.random().toString();
-      products.push(productDetail);
-
-      fs.writeFile(pathToData, JSON.stringify(products), (err) =>
-        console.log(err)
-      );
+  const db = getDb();
+  return db.collection("products").updateOne(
+    { _id: new mongoDB.ObjectId(id) },
+    {
+      $set: { title, price, description },
+      $currentDate: { lastModified: true },
     }
-  });
+  );
+};
 
 export const deleteProduct = (id) => {
-  getDataFromFile(pathToData, (products) => {
-    const curentProductIndex = getCurrentProductIndex(products, id);
-    const updateProducts = [...products];
-    updateProducts.splice(curentProductIndex, 1);
-
-    fs.writeFile(pathToData, JSON.stringify(updateProducts), (err) =>
-      console.log(err)
-    );
-  });
+  const db = getDb();
+  return db
+    .collection("products")
+    .deleteOne({ _id: new mongoDB.ObjectId(id) })
+    .then(() => {})
+    .catch((err) => console.log(err));
 };
 
-export const fetchAllProducts = (callback) =>
-  getDataFromFile(pathToData, callback);
+export const fetchAllProducts = () => {
+  const db = getDb();
+  return db
+    .collection("products")
+    .find()
+    .toArray()
+    .then((products) => products)
+    .catch((err) => console.log(err));
+};

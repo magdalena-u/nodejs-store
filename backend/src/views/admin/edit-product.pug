@@ -4,18 +4,11 @@ body
     main
        form(action="/admin/edit-product", method="POST") 
             div
-                if product
-                    label(for="title") Title
-                    input(type="text", name="title", id="title" value=product.title)
-                    label(for="price") Price
-                    input(type="number", name="price", id="price" value=product.price)
-                    textarea#description(name="description", cols="30", rows="10" placeholder="Write description...") #{product.description}
-                    input(type="hidden" name="id" value=product.id )
-                else
-                    label(for="title") Title
-                    input(type="text", name="title", id="title")
-                    label(for="price") Price
-                    input(type="number", name="price", id="price")
-                    textarea#description(name="description", cols="30", rows="10" placeholder="Write description...")
+                label(for="title") Title
+                input(type="text", name="title", id="title" value=product.title)
+                label(for="price") Price
+                input(type="number", name="price", id="price" value=product.price)
+                textarea#description(name="description", cols="30", rows="10" placeholder="Write description...") #{product.description}
+                input(type="hidden" name="id" value=product._id )
 
             button(type="submit") Save

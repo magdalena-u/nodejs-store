@@ -1,8 +1,13 @@
-import { addProduct, findProductById, deleteProduct } from "../models/product";
+import {
+  addProduct,
+  findProductById,
+  deleteProduct,
+  updateProduct,
+} from "../models/product";
 import { fetchAllProducts } from "../models/product";
 
 export const getAddProduct = (req, res, next) => {
-  res.render("admin/edit-product");
+  res.render("admin/add-product");
 };
 
 export const postAddProduct = (req, res, next) => {
@@ -10,16 +15,19 @@ export const postAddProduct = (req, res, next) => {
   res.redirect("/");
 };
 
-export const getEditProduct = (req, res, next) => {
-  findProductById(req.params.id, (product) =>
-    res.render("admin/edit-product", { product: product })
-  );
+export const getEditProduct = async (req, res, next) => {
+  const product = await findProductById(req.params.id);
+  res.render("admin/edit-product", { product });
 };
 
-export const getProductsList = (req, res, next) => {
-  fetchAllProducts((products) => {
-    res.render("admin/products-list", { products: products });
-  });
+export const postEditProduct = (req, res, next) => {
+  updateProduct(req.body);
+  res.redirect("admin/products-list");
+};
+
+export const getProductsList = async (req, res, next) => {
+  const products = await fetchAllProducts();
+  res.render("admin/products-list", { products });
 };
 
 export const getUpdatedProductsList = (req, res, next) => {

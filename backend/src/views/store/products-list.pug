@@ -6,8 +6,5 @@ body
             each product in products
                 div
                     h3 #{product.title}
-                    a(href="/products-list/" + product.id) Details
+                    a(href="/products-list/" + product._id) Details
                     p #{product.price}
-                    form(action="/cart", method="POST")
-                        input(type="hidden",name="id" value=product.id)
-                        button(type="submit") Add to cart             
