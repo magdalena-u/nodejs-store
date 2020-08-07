@@ -1,5 +1,3 @@
-const path = require("path");
-
 import { addProduct, findProductById, deleteProduct } from "../models/product";
 import { fetchAllProducts } from "../models/product";
 

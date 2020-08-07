@@ -1,4 +1,4 @@
-const express = require("express");
+import express from "express";
 
 import * as productsController from "../controllers/products";
 
