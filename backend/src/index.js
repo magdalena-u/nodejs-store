@@ -1,17 +1,17 @@
-const path = require("path");
-
-const express = require("express");
-const bodyParser = require("body-parser");
+import express from "express";
+import parser from "body-parser";
+import * as path from "path";
 
 import { adminRoutes } from "./routes/admin";
 import { storeRoutes } from "./routes/store";
+import { mongoConnect } from "./database";
 
 const app = express();
 
 app.set("view engine", "pug");
 app.set("views", "src/views");
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(parser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/admin", adminRoutes);
@@ -21,4 +21,6 @@ app.use((req, res, next) => {
   res.status(404).render("shared/404.pug");
 });
 
-app.listen(3000);
+mongoConnect(() => {
+  app.listen(3000);
+});
