@@ -1,6 +1,7 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 
+import { StoreContent } from 'pages';
 import { Header } from 'components/header';
 
 const GlobalStyle = createGlobalStyle`
@@ -17,6 +18,7 @@ function App() {
     <>
       <GlobalStyle />
       <Header />
+      <StoreContent />
     </>
   );
 }
