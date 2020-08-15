@@ -6,24 +6,17 @@ services:
       context: ./frontend
     container_name: store-frontend
     restart: always
-    command: bash -c "npm start"
-    depends_on:
-      - backend
+    stdin_open: true
+    ports:
+      - 3000:3000
 
   backend:
     build:
       context: ./backend
     container_name: store-backend
     restart: always
-    command: bash -c "npm run dev"
-    depends_on:
-      - mongo
-
-  mongo:
-    image: mongo
-    container_name: store-mongodb
     ports:
-      - 27017:27017
+      - 5000:5000
 
   nginx:
     build:
@@ -34,4 +27,3 @@ services:
     restart: always
     depends_on:
       - frontend
-      - backend
