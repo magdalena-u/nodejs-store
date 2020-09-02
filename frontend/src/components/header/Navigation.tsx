@@ -1,12 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import { fontWeight, color } from 'styles/variables';
+import { fontWeight, color } from "styles/variables";
 
 const routes = [
-  { name: 'home', url: '/home' },
-  { name: 'admin add product', url: '/admin/add-product' },
-  { name: 'admin product list', url: '/admin/product-list' },
+  { name: "home", url: "/home" },
+  { name: "admin add product", url: "/admin/add-product" },
+  { name: "admin product list", url: "/admin/product-list" },
 ];
 
 const NavigationContainer = styled.nav`
@@ -15,25 +15,25 @@ const NavigationContainer = styled.nav`
 `;
 
 const NavigationList = styled.ul`
-display: flex;
-justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 
-padding: 0;
-list-style: none;
-`
+  padding: 0;
+  list-style: none;
+`;
 
 const NavigationListItem = styled.li`
-padding: 0 1rem;
-`
+  padding: 0 1rem;
+`;
 
 const StyledLink = styled.a`
-text-decoration: none;
-color: ${color.darkGrey};
+  text-decoration: none;
+  color: ${color.darkGrey};
 
-:hover {
-  color: ${color.black};
-}
-`
+  :hover {
+    color: ${color.black};
+  }
+`;
 
 export const Navigation = () => (
   <NavigationContainer>
