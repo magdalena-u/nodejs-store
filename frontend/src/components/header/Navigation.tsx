@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { fontWeight, color } from "styles/variables";
 
 const routes = [
-  { name: "home", url: "/home" },
+  { name: "home", url: "/" },
   { name: "admin add product", url: "/admin/add-product" },
   { name: "admin product list", url: "/admin/product-list" },
 ];
@@ -35,7 +35,7 @@ const StyledLink = styled.a`
   }
 `;
 
-export const Navigation = () => (
+export const Navigation: React.SFC = () => (
   <NavigationContainer>
     <NavigationList>
       {routes.map((route) => (

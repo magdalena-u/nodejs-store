@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import { IStoreProduct } from 'interfaces/store/IStoreProduct';
+import { IStoreProduct } from "interfaces/store/IStoreProduct";
 
-import { color, fontWeight } from 'styles/variables';
+import { color, fontWeight } from "styles/variables";
 
 const TileContainer = styled.div`
   position: relative;
@@ -43,7 +43,7 @@ const Image = styled.img`
   padding: 1rem;
 `;
 
-export const TileComponent = ({ product }: IStoreProduct) => (
+export const TileComponent: React.SFC<IStoreProduct> = ({ product }) => (
   <TileContainer>
     <TextContainer>
       <Title>{product.title}</Title>

@@ -1,25 +1,13 @@
-import React from 'react';
-import { createGlobalStyle } from 'styled-components';
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
 
-import { StoreContent } from 'pages';
-import { Header } from 'components/header';
+import { Routes } from "routes";
 
-const GlobalStyle = createGlobalStyle`
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
-  min-height: 100vh;
-}
-`;
-
-function App() {
+function App(): JSX.Element {
   return (
-    <>
-      <GlobalStyle />
-      <Header />
-      <StoreContent />
-    </>
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
   );
 }
 
