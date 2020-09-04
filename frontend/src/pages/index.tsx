@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import { TileComponent } from 'components/store/Tile';
+import { TileComponent } from "components/store/Tile";
 
-import { products } from 'mock/products';
+import { products } from "mock/products";
 
 const StoreProductContainer = styled.div`
   display: flex;
@@ -14,7 +14,7 @@ const StoreProductContainer = styled.div`
   width: 80%;
 `;
 
-export const StoreContent = () => (
+export const StoreContent: React.SFC = () => (
   <StoreProductContainer>
     <h2></h2>
     {products.map((product) => (

@@ -6,4 +6,7 @@ build:
 
 dev:
 	docker-compose ${dockerfile} up -d
+
+install-frontend-deps:
+	npm --prefix ./frontend install
 	

@@ -1,31 +1,30 @@
-import React from 'react';
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
-import { Navigation } from 'components/header/Navigation';
+import { Navigation } from "components/header/Navigation";
 
-import {color} from 'styles/variables'
+import { color } from "styles/variables";
 
 const ImageContainer = styled.div`
-background-color: ${color.grey};
-height: 50vh;
-position: relative;
-overflow: hidden;
-`
+  background-color: ${color.grey};
+  height: 50vh;
+  position: relative;
+  overflow: hidden;
+`;
 
 const Image = styled.img`
-position: absolute;
-top: -6rem;
-left: 5rem;
+  position: absolute;
+  top: -6rem;
+  left: 5rem;
 
-height: 120%;
-object-fit: contain;
-`
+  height: 120%;
+  object-fit: contain;
+`;
 
-
-export const Header = () => (
+export const Header: React.SFC = () => (
   <header>
     <ImageContainer>
-      <Image src='/image/flower2.png'/>
+      <Image src="/image/flower2.png" />
       <Navigation />
     </ImageContainer>
   </header>
