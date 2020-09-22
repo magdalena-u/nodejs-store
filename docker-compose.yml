@@ -9,6 +9,9 @@ services:
     stdin_open: true
     ports:
       - 3000:3000
+    volumes:
+      - ./frontend:/frontend
+      - ./frontend/node_modules
 
   backend:
     build:
@@ -17,6 +20,9 @@ services:
     restart: always
     ports:
       - 5000:5000
+    volumes:
+      - ./backend:/backend
+      - ./backend/node_modules
 
   nginx:
     build:
@@ -27,3 +33,4 @@ services:
     restart: always
     depends_on:
       - frontend
+      - backend
