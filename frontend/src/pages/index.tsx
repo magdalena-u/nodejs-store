@@ -14,7 +14,7 @@ const StoreProductContainer = styled.div`
   width: 80%;
 `;
 
-export const StoreContent: React.SFC = () => (
+export const StoreContent: React.FC = () => (
   <StoreProductContainer>
     <h2></h2>
     {products.map((product) => (

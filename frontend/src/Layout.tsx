@@ -16,7 +16,7 @@ interface ILayout {
   children: JSX.Element;
 }
 
-export const Layout: React.SFC<ILayout> = ({ children }) => (
+export const Layout: React.FC<ILayout> = ({ children }) => (
   <>
     <GlobalStyle />
     <Header />

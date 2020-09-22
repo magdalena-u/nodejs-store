@@ -43,7 +43,7 @@ const Image = styled.img`
   padding: 1rem;
 `;
 
-export const TileComponent: React.SFC<IStoreProduct> = ({ product }) => (
+export const TileComponent: React.FC<IStoreProduct> = ({ product }) => (
   <TileContainer>
     <TextContainer>
       <Title>{product.title}</Title>

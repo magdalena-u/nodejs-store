@@ -35,7 +35,7 @@ const StyledLink = styled.a`
   }
 `;
 
-export const Navigation: React.SFC = () => (
+export const Navigation: React.FC = () => (
   <NavigationContainer>
     <NavigationList>
       {routes.map((route) => (

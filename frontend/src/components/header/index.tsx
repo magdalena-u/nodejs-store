@@ -21,7 +21,7 @@ const Image = styled.img`
   object-fit: contain;
 `;
 
-export const Header: React.SFC = () => (
+export const Header: React.FC = () => (
   <header>
     <ImageContainer>
       <Image src="/image/flower2.png" />
