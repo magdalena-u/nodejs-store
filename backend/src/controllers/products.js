@@ -12,7 +12,6 @@ export const getAddProduct = (req, res, next) => {
 
 export const postAddProduct = (req, res, next) => {
   addProduct(req.body);
-  res.redirect("/");
 };
 
 export const getEditProduct = async (req, res, next) => {
