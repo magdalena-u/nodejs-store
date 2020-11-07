@@ -26,7 +26,7 @@ export const postEditProduct = (req, res, next) => {
 
 export const getProductsList = async (req, res, next) => {
   const products = await fetchAllProducts();
-  res.render("admin/products-list", { products });
+  return JSON.stringify(products);
 };
 
 export const getUpdatedProductsList = (req, res, next) => {

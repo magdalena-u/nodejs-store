@@ -11,6 +11,19 @@ const app = express();
 app.set("view engine", "pug");
 app.set("views", "src/views");
 
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+  res.header(("methods", ["GET", "POST", "DELETE"]));
+
+  // {
+  //   origin: "*",
+  //   allowedHeaders: ["Content-Type", "Authorization"],
+  //   methods: ["GET", "POST", "DELETE"],
+  // }
+  next();
+});
+
 app.use(parser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 

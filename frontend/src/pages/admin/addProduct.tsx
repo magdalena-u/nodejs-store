@@ -1,12 +1,5 @@
-import React from 'react'
+import React from "react";
 
-import {ProductForm} from 'components/admin/ProductForm'
+import { ProductForm } from "components/admin/ProductForm";
 
-
-export const AddProduct = () => (
-    <div>
-       <ProductForm/>
-    </div>
-)
-
-
+export const AddProduct: React.FC = () => <ProductForm />;
