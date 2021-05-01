@@ -5,8 +5,8 @@ import styled from "styled-components";
 
 import { IStoreProductDetail } from "interfaces/store/IStoreProduct";
 import { Button } from "components/shared/Button";
-import { apiBase } from "apiBase";
 import { color } from "styles/variables";
+import { httpService } from "services/rootService";
 
 const FormContainer = styled.div`
   margin: 2rem 0;
@@ -44,10 +44,9 @@ export const ProductForm: React.FC = () => {
   const [isSubmit, setIsSubmit] = useState(false);
 
   const submitForm = (data: IStoreProductDetail) => {
-    fetch(`${apiBase}/admin/add-product`, {
-      method: "POST",
-      body: JSON.stringify(data),
-    }).then(() => setIsSubmit(true));
+    httpService.POST(`admin/add-product`, data).then((res) => {
+      setIsSubmit(true);
+    });
   };
 
   return (
@@ -80,8 +79,9 @@ export const ProductForm: React.FC = () => {
               id="description"
               ref={register()}
             ></Textarea>
-
-            <Button>Submit</Button>
+            <Label htmlFor="imageUrl">Image URL</Label>
+            <Input type="url" name="imageUrl" ref={register()} />
+            <Button type="submit">Submit</Button>
           </FormWrapper>
         </FormContainer>
       )}

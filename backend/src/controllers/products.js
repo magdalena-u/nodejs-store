@@ -11,7 +11,7 @@ export const getAddProduct = (req, res, next) => {
 };
 
 export const postAddProduct = (req, res, next) => {
-  addProduct(req.body);
+  addProduct(req.body).then((data) => res.send(data));
 };
 
 export const getEditProduct = async (req, res, next) => {
