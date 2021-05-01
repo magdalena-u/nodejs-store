@@ -14,10 +14,11 @@ export const findProductById = (id) => {
 
 export const addProduct = (productDetails) => {
   const db = getDb();
+
   return db
     .collection("products")
     .insertOne(productDetails)
-    .then((result) => {})
+    .then((result) => result)
     .catch((err) => console.log(err));
 };
 
