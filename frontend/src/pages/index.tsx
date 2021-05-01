@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { TileComponent } from "components/store/Tile";
-
-import { products } from "mock/products";
+import { httpService } from "services/rootService";
 
 const StoreProductContainer = styled.div`
   display: flex;
@@ -14,11 +13,18 @@ const StoreProductContainer = styled.div`
   width: 80%;
 `;
 
-export const StoreContent: React.FC = () => (
-  <StoreProductContainer>
-    <h2></h2>
-    {products.map((product) => (
-      <TileComponent product={product} />
-    ))}
-  </StoreProductContainer>
-);
+export const StoreContent: React.FC = () => {
+  const [products, setProducts] = useState<any>([]);
+  useEffect(() => {
+    httpService.GET("products-list").then((res) => setProducts(res));
+  }, []);
+
+  return (
+    <StoreProductContainer>
+      <h2></h2>
+      {products.map((product: any) => (
+        <TileComponent product={product} />
+      ))}
+    </StoreProductContainer>
+  );
+};

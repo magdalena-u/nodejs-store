@@ -2,8 +2,7 @@ import { fetchAllProducts, findProductById } from "../models/product";
 import { addProduct, fetchCartProducts, deleteProduct } from "../models/cart";
 
 export const getProductsList = async (req, res, next) => {
-  const products = await fetchAllProducts();
-  res.render("store/products-list", { products });
+  return await fetchAllProducts().then((data) => res.send(data));
 };
 
 export const getProductDetail = async (req, res, next) => {
