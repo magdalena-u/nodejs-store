@@ -40,7 +40,7 @@ export const deleteProduct = (id) => {
   return db
     .collection("products")
     .deleteOne({ _id: new mongoDB.ObjectId(id) })
-    .then(() => {})
+    .then((result) => result)
     .catch((err) => console.log(err));
 };
 

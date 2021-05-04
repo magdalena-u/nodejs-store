@@ -3,6 +3,7 @@ export interface IStoreProductDetail {
   price: number;
   imageUrl: string;
   description?: string;
+  _id: string;
 }
 
 export interface IStoreProduct {

@@ -56,7 +56,7 @@ export const TileComponent: React.FC<IStoreProduct> = ({
   isAdmin,
 }) => (
   <TileContainer>
-    {isAdmin && <IconMenu />}
+    {isAdmin && <IconMenu productId={product._id}/>}
     <Title>{product.title}</Title>
     <Price>$ {product.price}</Price>
     <Image src={product.imageUrl} />

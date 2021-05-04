@@ -23,7 +23,7 @@ export const ProductList: React.FC<IProductList> = ({ isAdmin }) => {
   return (
     <StoreProductContainer>
       {products.map((product: any) => (
-        <TileComponent product={product} isAdmin={isAdmin} />
+        <TileComponent key={product._id} product={product} isAdmin={isAdmin} />
       ))}
     </StoreProductContainer>
   );

@@ -30,6 +30,5 @@ export const getProductsList = async (req, res, next) => {
 };
 
 export const getUpdatedProductsList = (req, res, next) => {
-  deleteProduct(req.body.id);
-  res.redirect("/admin/products-list");
+  deleteProduct(req.body.productId).then(data => res.send(data))
 };

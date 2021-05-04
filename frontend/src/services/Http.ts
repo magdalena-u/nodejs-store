@@ -10,6 +10,10 @@ export class Http {
     return this.makeRequest(METHOD.post, path, body);
   }
 
+  public DELETE<B, P>(path: string, body: B): Promise<P> {
+    return this.makeRequest(METHOD.delete, path, body);
+  }
+
   private makeRequest<B, P>(
     method: METHOD,
     path: string,
