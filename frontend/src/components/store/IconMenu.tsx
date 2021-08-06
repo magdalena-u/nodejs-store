@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Redirect } from "react-router";
 
 import { httpService } from "services/rootService";
 import { IIconMenu } from "interfaces/store/IIconMenu";
+import { routes } from "routes/index.config";
 
 import EditIcon from "styles/images/edit.svg";
 import DeleteIcon from "styles/images/delete.svg";
-import { Redirect } from "react-router";
 
 const IconContainer = styled.div`
   display: flex;
@@ -40,7 +41,9 @@ export const IconMenu: React.FC<IIconMenu> = ({ productId }) => {
         <Redirect to="/admin/product-list" />
       ) : (
         <IconContainer>
-          <Icon src={EditIcon} />
+          <a href={`${routes.admin.editProduct}/${productId}`}>
+            <Icon src={EditIcon} />
+          </a>
           <Icon src={DeleteIcon} onClick={() => deleteProduct()} />
         </IconContainer>
       )}

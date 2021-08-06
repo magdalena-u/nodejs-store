@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { TileComponent } from "components/store/Tile";
 import { httpService } from "services/rootService";
 import { IProductList } from "interfaces/shared/IProductList";
+import { routes } from "routes/index.config";
 
 const StoreProductContainer = styled.div`
   display: flex;
@@ -17,7 +18,7 @@ const StoreProductContainer = styled.div`
 export const ProductList: React.FC<IProductList> = ({ isAdmin }) => {
   const [products, setProducts] = useState<any>([]);
   useEffect(() => {
-    httpService.GET("products-list").then((res) => setProducts(res));
+    httpService.GET(routes.productList).then((res) => setProducts(res));
   }, []);
 
   return (

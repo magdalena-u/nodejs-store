@@ -7,6 +7,7 @@ import { IStoreProductDetail } from "interfaces/store/IStoreProduct";
 import { Button } from "components/shared/Button";
 import { color } from "styles/variables";
 import { httpService } from "services/rootService";
+import { routes } from "routes/index.config";
 
 const FormContainer = styled.div`
   margin: 2rem 0;
@@ -39,12 +40,39 @@ const Textarea = styled.textarea`
   border-radius: 8px;
 `;
 
-export const ProductForm: React.FC = () => {
-  const { handleSubmit, register, errors } = useForm();
+const defaultValues = {
+  title: "",
+  price: 0,
+};
+
+interface IProductForm {
+  values?: IProductValues;
+}
+
+interface IProductValues {
+  title: string;
+  price: number;
+  description?: string;
+  imageUrl?: string;
+}
+
+export const ProductForm: React.FC<IProductForm> = ({ values }) => {
+  const formValues = values
+    ? {
+        defaultValues: {
+          title: values.title,
+          price: values.price,
+          description: values.description,
+          imageUrl: values.imageUrl
+        },
+      }
+    : { defaultValues };
+
+  const { handleSubmit, register, errors } = useForm(formValues);
   const [isSubmit, setIsSubmit] = useState(false);
 
   const submitForm = (data: IStoreProductDetail) => {
-    httpService.POST(`admin/add-product`, data).then((res) => {
+    httpService.POST(routes.admin.addProduct, data).then((res) => {
       setIsSubmit(true);
     });
   };
@@ -52,7 +80,7 @@ export const ProductForm: React.FC = () => {
   return (
     <>
       {isSubmit ? (
-        <Redirect to="/" />
+        <Redirect to={routes.main} />
       ) : (
         <FormContainer>
           <FormWrapper onSubmit={handleSubmit(submitForm)}>

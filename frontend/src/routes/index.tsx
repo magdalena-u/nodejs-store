@@ -5,15 +5,26 @@ import { Layout } from "Layout";
 import { StoreProductList } from "pages";
 import { AddProduct } from "pages/admin/addProduct";
 import { AdminProductList } from "pages/admin/products";
+import { routes } from "routes/index.config";
+import { EditProduct } from "pages/admin/editProductList";
 
 export const Routes: React.FC = () => (
   <Layout>
     <Switch>
-      <Route exact={true} path="/" component={StoreProductList} />
-      <Route exact={true} path="/admin/add-product" component={AddProduct} />
+      <Route exact={true} path={routes.main} component={StoreProductList} />
       <Route
         exact={true}
-        path="/admin/product-list"
+        path={routes.admin.addProduct}
+        component={AddProduct}
+      />
+      <Route
+        exact={true}
+        path={`${routes.admin.editProduct}/:id`}
+        component={EditProduct}
+      />
+      <Route
+        exact={true}
+        path={routes.admin.productList}
         component={AdminProductList}
       />
     </Switch>

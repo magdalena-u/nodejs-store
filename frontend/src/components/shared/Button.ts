@@ -14,6 +14,8 @@ export const Button = styled.button`
 
   border: none;
   border-radius: 8px;
-  height: 2rem;
-  max-width: 5rem;
+  height: 1.8rem;
+  max-width: 6rem;
+
+  margin: 1rem 0;
 `;
